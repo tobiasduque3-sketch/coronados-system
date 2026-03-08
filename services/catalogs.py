@@ -1,16 +1,16 @@
-import pandas as pd
+ï»¿import pandas as pd
 
 from utils.storage import ARCHIVO_EXCEL_REFERENCIA, cargar_gastos, cargar_sueldos
 
 PROVEEDORES_DEFAULT = [
     "Proveedor de carne",
-    "Verdulería",
+    "Verduleria",
     "Bebidas",
     "Limpieza e higiene",
     "Gas",
     "Supermercado",
-    "Fiambrería",
-    "Panadería",
+    "Fiambreria",
+    "Panaderia",
     "Otro",
 ]
 CATEGORIAS_GASTO = ["Insumos", "Servicios", "Mantenimiento", "Limpieza", "Otros"]
