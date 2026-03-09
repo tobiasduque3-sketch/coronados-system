@@ -10,6 +10,8 @@ import streamlit as st
 
 if not hasattr(st, "rerun"):
     st.rerun = st.experimental_rerun
+if not hasattr(st, "divider"):
+    st.divider = lambda: st.markdown("---")
 
 from services.auth import (
     ROLE_ADMIN_OWNER,
@@ -1074,6 +1076,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
