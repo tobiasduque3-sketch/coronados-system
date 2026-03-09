@@ -8,6 +8,9 @@ from datetime import date, datetime, timedelta
 import pandas as pd
 import streamlit as st
 
+if not hasattr(st, "rerun"):
+    st.rerun = st.experimental_rerun
+
 from services.auth import (
     ROLE_ADMIN_OWNER,
     ROLE_ADMIN,
@@ -1071,6 +1074,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
