@@ -8,26 +8,7 @@ from datetime import date, datetime, timedelta
 import pandas as pd
 import streamlit as st
 
-if not hasattr(st, "rerun"):
-    st.rerun = st.experimental_rerun
 
-
-def _with_compat_fallback(func, *unsupported_kwargs):
-    def _wrapped(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except TypeError:
-            for key in unsupported_kwargs:
-                kwargs.pop(key, None)
-            return func(*args, **kwargs)
-
-    return _wrapped
-
-
-st.button = _with_compat_fallback(st.button, "type")
-st.download_button = _with_compat_fallback(st.download_button, "type", "use_container_width")
-st.radio = _with_compat_fallback(st.radio, "horizontal", "label_visibility")
-st.dataframe = _with_compat_fallback(st.dataframe, "use_container_width")
 
 from services.auth import (
     ROLE_ADMIN_OWNER,
@@ -1092,6 +1073,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
