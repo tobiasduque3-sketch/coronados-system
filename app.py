@@ -586,7 +586,10 @@ def _render_admin_users(current_user: str) -> None:
         role = st.selectbox("Rol", options=sorted(ASSIGNABLE_ROLES))
         if st.form_submit_button("Crear usuario"):
             ok, msg = create_user(username, password, role, actor_username=current_user)
-            st.success(msg) if ok else st.warning(msg)
+            if ok:
+                st.success(msg)
+            else:
+                st.warning(msg)
             if ok:
                 st.rerun()
     if not df_users.empty:
@@ -597,7 +600,10 @@ def _render_admin_users(current_user: str) -> None:
             nueva = st.text_input("Nueva contrasena", type="password")
             if st.form_submit_button("Resetear contrasena"):
                 ok, msg = reset_password(objetivo, nueva, actor_username=current_user)
-                st.success(msg) if ok else st.warning(msg)
+                if ok:
+                    st.success(msg)
+                else:
+                    st.warning(msg)
         with st.form("user_state_form"):
             st.markdown("**Estado y eliminacion**")
             objetivo = st.selectbox("Usuario objetivo", options=usuarios, key="state_user")
@@ -615,7 +621,10 @@ def _render_admin_users(current_user: str) -> None:
                         ok, msg = set_user_active(objetivo, True, actor_username=current_user)
                     else:
                         ok, msg = delete_user(objetivo, actor_username=current_user)
-                    st.success(msg) if ok else st.warning(msg)
+                    if ok:
+                        st.success(msg)
+                    else:
+                        st.warning(msg)
                     if ok:
                         st.rerun()
 
@@ -640,7 +649,10 @@ def _render_admin_backups(current_user: str) -> None:
             st.warning("Debe confirmar la restauracion.")
         else:
             ok, msg = restore_db_backup(selected, username=current_user)
-            st.success(msg) if ok else st.error(msg)
+            if ok:
+                st.success(msg)
+            else:
+                st.error(msg)
             if ok:
                 st.rerun()
 
